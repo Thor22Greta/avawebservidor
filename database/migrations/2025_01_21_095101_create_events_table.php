@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('events', function (Blueprint $table) {
+            $table->id();  
+            $table->unsignedBigInteger('user_id');  
+            $table->dateTime('event_date');
+            $table->text('description');
+            $table->string('poster_image_url');  // Cambié el nombre del campo a 'poster_image_url' como en el modelo
+            $table->string('location')->nullable();
+            $table->string('contact_info')->nullable();
+            $table->decimal('revenue', 8, 2)->nullable();  // Recaudación (con valores decimales y puede ser null)
+            $table->timestamps();
+
+            // Relación con 'users'
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('events');
+    }
+};
