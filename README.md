@@ -7,6 +7,39 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# AVA Animalistes Vall d'Albaida
+
+**AVA Animalistes Vall d'Albaida** es una página web dedicada a promover el bienestar animal en la región de la Vall d'Albaida. La plataforma tiene como objetivo principal visibilizar casos de animales en adopción, organizar eventos para recaudar fondos y concienciar a la población sobre la nueva **Ley de Protección Animal**.
+
+## Objetivos del Proyecto
+
+- **Visibilizar animales en adopción**: Mostrar casos de animales que buscan un hogar, ayudando a que las personas conozcan y adopten.
+- **Organizar eventos benéficos**: Crear eventos para recaudar fondos que serán utilizados para proteger y cuidar de los animales en la asociación.
+- **Concienciación sobre la Ley de Protección Animal**: Educar a la población sobre la nueva legislación y la importancia de defender los derechos de los animales.
+- **Dar voz a los animales**: Ofrecer una plataforma que visibilice los casos de abuso animal y fomente el respeto hacia los animales.
+
+## Funcionalidades
+
+1. **Animales en adopción**: Los usuarios pueden ver y filtrar casos de animales en adopción, con detalles sobre cada uno.
+2. **Eventos**: Crear, listar y gestionar eventos para recaudar fondos a favor de la causa.
+3. **Donaciones**: Realizar donaciones a través de los eventos para apoyar la causa.
+4. **Área de usuario**: Los usuarios pueden crear una cuenta, iniciar sesión y gestionar su perfil.
+5. **Gestión Administrativa**: Los administradores pueden gestionar usuarios, animales, eventos y donaciones desde un panel de control.
+
+## Tecnologías Utilizadas
+
+- **Backend**: Laravel (PHP Framework)
+- **Frontend**: Vue.js + Tailwind CSS
+- **Base de Datos**: MySQL / SQLite
+- **Autenticación**: Laravel Sanctum, Jetstream
+- **Gestión de Donaciones**: Integración de pagos a través de un sistema de eventos y donaciones.
+
+## Instalación
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/Thor22Greta/avawebservidor.git
+   
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
