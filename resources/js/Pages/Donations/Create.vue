@@ -19,15 +19,16 @@ const submit = () => {
 
 <template>
     <div class="p-6">
-        <h1 class="text-2xl font-bold">Registrar Donación</h1>
+        <h1 class="text-2xl font-bold text-green-600">Registrar Donación</h1>
+
         <form @submit.prevent="submit" class="mt-4">
-            <select v-model="form.user_id" class="border p-2 w-full mb-2" required>
+            <select v-model="form.user_id" class="border border-green-600 p-2 w-full mb-2" required>
                 <option value="">Selecciona un usuario</option>
                 <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name }}</option>
             </select>
-            <input v-model="form.amount" type="number" placeholder="Monto" class="border p-2 w-full mb-2" required />
-            <input v-model="form.payment_method" placeholder="Método de Pago" class="border p-2 w-full mb-2" required />
-            <button type="submit" class="bg-green-500 text-white p-2">Guardar</button>
+            <input v-model="form.amount" type="number" placeholder="Monto" class="border border-green-600 p-2 w-full mb-2" required />
+            <input v-model="form.payment_method" placeholder="Método de Pago" class="border border-green-600 p-2 w-full mb-2" required />
+            <button type="submit" class="bg-green-600 hover:bg-green-500 text-white p-2 w-full mt-4">Guardar</button>
         </form>
     </div>
 </template>

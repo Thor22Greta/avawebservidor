@@ -17,14 +17,14 @@ const submit = () => {
 
 <template>
     <div class="p-6">
-        <h1 class="text-2xl font-bold">Editar Evento</h1>
+        <h1 class="text-2xl font-bold text-green-600">Editar Evento</h1>
         <form @submit.prevent="submit" class="space-y-2">
-            <input v-model="form.event_date" type="date" class="border p-2 w-full" required />
-            <input v-model="form.description" type="text" placeholder="Descripción" class="border p-2 w-full" required />
-            <input v-model="form.location" type="text" placeholder="Ubicación" class="border p-2 w-full" required />
+            <input v-model="form.event_date" type="date" class="border-green-600 border p-2 w-full" required />
+            <input v-model="form.description" type="text" placeholder="Descripción" class="border-green-600 border p-2 w-full" required />
+            <input v-model="form.location" type="text" placeholder="Ubicación" class="border-green-600 border p-2 w-full" required />
 
-            <button type="submit" class="bg-blue-500 text-white p-2">Actualizar</button>
-            <a href="/events" class="bg-gray-500 text-white p-2 ml-2">Cancelar</a>
+            <button type="submit" class="bg-green-600 text-white p-2 hover:bg-green-500 w-full mt-4">Actualizar</button>
+            <a href="/events" class="bg-red-500 text-white p-2 hover:bg-red-400 w-full mt-4 block text-center">Cancelar</a>
         </form>
     </div>
 </template>

@@ -22,16 +22,16 @@ const submit = () => {
 
 <template>
     <div class="p-6">
-        <h1 class="text-2xl font-bold">Editar Animal</h1>
+        <h1 class="text-2xl font-bold text-green-600">Editar Animal</h1>
         <form @submit.prevent="submit" class="mt-4">
-            <input v-model="form.name" placeholder="Nombre" class="border p-2 w-full mb-2" required />
-            <input v-model="form.raza" placeholder="Raza" class="border p-2 w-full mb-2" required />
-            <input v-model="form.chip" placeholder="Chip (opcional)" class="border p-2 w-full mb-2" />
-            <input v-model="form.age" type="number" placeholder="Edad" class="border p-2 w-full mb-2" required />
-            <input v-model="form.poster_image_url" placeholder="URL de la imagen" class="border p-2 w-full mb-2" />
+            <input v-model="form.name" placeholder="Nombre" class="border-green-600 border p-2 w-full mb-2" required />
+            <input v-model="form.raza" placeholder="Raza" class="border-green-600 border p-2 w-full mb-2" required />
+            <input v-model="form.chip" placeholder="Chip (opcional)" class="border-green-600 border p-2 w-full mb-2" />
+            <input v-model="form.age" type="number" placeholder="Edad" class="border-green-600 border p-2 w-full mb-2" required />
+            <input v-model="form.poster_image_url" placeholder="URL de la imagen" class="border-green-600 border p-2 w-full mb-2" />
 
-            <button type="submit" class="bg-yellow-500 text-white p-2">Actualizar</button>
-            <a href="/animals" class="bg-gray-500 text-white p-2 ml-2">Cancelar</a>
+            <button type="submit" class="bg-green-600 text-white p-2 hover:bg-green-500 w-full mt-4">Actualizar</button>
+            <a href="/animals" class="bg-red-500 text-white p-2 hover:bg-red-400 w-full mt-4 block text-center">Cancelar</a>
         </form>
     </div>
 </template>

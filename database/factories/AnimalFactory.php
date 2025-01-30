@@ -29,7 +29,7 @@ class AnimalFactory extends Factory
             'chip' => $this->faker->optional()->numberBetween(100000000000000, 999999999999999), // Número de chip de 15 dígitos, nullable
             'age' => rand(1, 10), // Edad aleatoria de 1 a 10
             'user_id' => rand(1, 5), // Asigna un usuario aleatorio
-            'adopted' => $this->faker->optional()->dateTime(), // Adoptado aleatoriamente (puede ser un timestamp o null)
+            'adopted' => $this->faker->optional()->dateTimeThisYear(), // Adoptado aleatoriamente (puede ser un timestamp o null)
             'poster_image_url' => "https://via.placeholder.com/640x480.png?text=" . $this->faker->word(), // Imagen placeholder con nombre aleatorio
         ];
     }

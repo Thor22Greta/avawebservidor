@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('chip')->nullable();  // Chip del animal, puede ser nulo
             $table->integer('age')->nullable();  // Edad del animal, puede ser nulo
             $table->unsignedBigInteger('user_id')->nullable();  // Relación con el usuario, puede ser nulo
-            $table->boolean('adopted')->nullable();  // Adoptado como un timestamp o null
+            $table->timestamp('adopted')->nullable();  // Adoptado como un timestamp o null
             $table->string('poster_image_url')->nullable();  // URL de la imagen del cartel, puede ser nula
             $table->timestamps();  // Timestamps
 

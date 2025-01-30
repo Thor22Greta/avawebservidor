@@ -45,13 +45,29 @@ const logout = () => {
                                     <ApplicationMark class="block h-9 w-auto" />
                                 </Link>
                             </div>
+                            
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+                                    Home
                                 </NavLink>
                             </div>
+                            <!-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink :href="route('animals')" :active="route().current('dashboard')">
+                                    Animales
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink :href="route('events')" :active="route().current('dashboard')">
+                                    Eventos
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink :href="route('donations')" :active="route().current('dashboard')">
+                                    Donaciones
+                                </NavLink>
+                            </div> -->
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
