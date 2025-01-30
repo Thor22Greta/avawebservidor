@@ -5,15 +5,15 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 <template>
     <div>
         <!-- Sección de encabezado -->
-        <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
-            <h1 class="mt-8 text-3xl font-bold text-gray-900">Animalistes Vall d’Albaida</h1>
+        <div class="p-6 lg:p-8 bg-white border-b border-green-600">
+            <h1 class="mt-8 text-3xl font-bold text-green-600">Animalistes Vall d’Albaida</h1>
             <p class="mt-4 text-xl text-gray-600">Luchando por el bienestar animal</p>
         </div>
 
         <!-- Sección de objetivos -->
         <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
             <div>
-                <h2 class="text-2xl font-semibold text-gray-900">🎯 Nuestro objetivo</h2>
+                <h2 class="text-2xl font-semibold text-green-600">🎯 Nuestro objetivo</h2>
                 <p class="mt-4 text-gray-500 text-sm leading-relaxed">
                     Llevar a la práctica la Ley de Bienestar Animal para proteger y mejorar las condiciones de vida de los animales.
                 </p>
@@ -21,7 +21,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
             <!-- Sección de lucha por los animales -->
             <div>
-                <h2 class="text-2xl font-semibold text-gray-900">🐶 Luchando por los animales</h2>
+                <h2 class="text-2xl font-semibold text-green-600">🐶 Luchando por los animales</h2>
                 <p class="mt-4 text-gray-500 text-sm leading-relaxed">
                     Estamos comprometidos con la defensa de los derechos de los animales y trabajamos activamente para darles una vida mejor.
                 </p>
@@ -30,7 +30,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
         <!-- Sección de donaciones -->
         <div class="bg-white p-6 lg:p-8 mt-6 border-t border-gray-200">
-            <h2 class="text-2xl font-semibold text-gray-900">💚 Cuenta de Donaciones</h2>
+            <h2 class="text-2xl font-semibold text-green-600">💚 Cuenta de Donaciones</h2>
             <p class="mt-4 text-gray-500 text-sm leading-relaxed">
                 Tu apoyo es fundamental para continuar con nuestra misión. Puedes realizar una donación a través de la siguiente cuenta:
             </p>
@@ -42,7 +42,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
             </p>
             <p class="mt-2">
                 <a href="https://www.tiendanimal.es/servicios/adopta-con-tiendanimal/protectora/perfil/valencia/animalistes-vall-d'albaida/380?srsltid=AfmBOoq2-G5QOxByxQ2G6SJKi36sWH2U27Vlv1LnsFC-pD1KpMdc0cPK" 
-                   class="inline-flex items-center font-semibold text-indigo-700" target="_blank">
+                   class="inline-flex items-center font-semibold text-green-600" target="_blank">
                     Consulta aquí todos nuestros animales en adopción
 
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ms-1 size-5 fill-indigo-500">
