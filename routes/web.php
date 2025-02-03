@@ -6,6 +6,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\DonationController;
+use Illuminate\Support\Facades\Auth;
+
 
 
 Route::get('/', function () {
@@ -40,6 +42,14 @@ Route::get('/donations/{donation}', [DonationController::class, 'show'])->name('
 Route::get('/donations/{donation}/edit', [DonationController::class, 'edit'])->name('donations.edit');
 Route::put('/donations/{donation}', [DonationController::class, 'update'])->name('donations.update');
 Route::delete('/donations/{donation}', [DonationController::class, 'destroy'])->name('donations.destroy');
+
+Route::get('estadisticas', function () {
+    if (Auth::user()->is_admin) {
+        return Inertia::render('Admin');
+    } else  {
+        return Inertia::render('dashboard');
+    }
+})->name('Admin')->middleware('auth:sanctum');
 
 Route::middleware([
     'auth:sanctum',

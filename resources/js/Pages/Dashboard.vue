@@ -8,8 +8,7 @@ import Welcome from '@/Components/Welcome.vue';
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Home
-            </h2>
-            
+            </h2> 
         </template>
 
         <div class="py-12">
@@ -20,4 +19,5 @@ import Welcome from '@/Components/Welcome.vue';
             </div>
         </div>
     </AppLayout>
+    
 </template>
