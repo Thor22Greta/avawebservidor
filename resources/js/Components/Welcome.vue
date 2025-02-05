@@ -1,13 +1,24 @@
 <script setup>
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import ApplicationLogo from '@/Components/ApplicationMark.vue';
 </script>
 
 <template>
     <div>
         <!-- Sección de encabezado -->
-        <div class="p-6 lg:p-8 bg-white border-b border-green-600">
-            <h1 class="mt-8 text-3xl font-bold text-green-600">Animalistes Vall d’Albaida</h1>
-            <p class="mt-4 text-xl text-gray-600">Luchando por el bienestar animal</p>
+        <div class="p-6 lg:p-8 bg-white border-b border-green-600 text-center">
+            <ApplicationLogo class="w-32 h-32 mx-auto" />
+            <h1 class="mt-4 text-3xl font-bold text-green-600">Animalistes Vall d’Albaida</h1>
+            <p class="mt-2 text-xl text-gray-600">Luchando por el bienestar animal</p>
+            <!-- Enlace a Instagram -->
+            <p class="mt-4">
+                    <a href="https://www.instagram.com/animalistesvalldalbaida/" 
+                       class="inline-flex items-center font-semibold text-green-600" target="_blank">
+                        Visítanos en Instagram
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ms-1 size-5 fill-indigo-500">
+                            <path fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </p>
         </div>
 
         <!-- Sección de objetivos -->

@@ -53,7 +53,7 @@ const logout = () => {
                                     Home
                                 </NavLink>
                                 <NavLink :href="route('animals.index')" :active="route().current('animals.index')">
-                                    Animals
+                                    Animales
                                 </NavLink>
                                 <NavLink :href="route('events.index')" :active="route().current('events.index')">
                                     Eventos
