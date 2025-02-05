@@ -1,5 +1,6 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import ApplicationLogo from '@/Components/ApplicationMark.vue'; 
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
 import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
 import Checkbox from '@/Components/Checkbox.vue';
@@ -23,12 +24,14 @@ const submit = () => {
 };
 </script>
 
+
 <template>
     <Head title="Register" />
 
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+            <!-- Usa ApplicationLogo aquí -->
+            <ApplicationLogo class="w-32 h-32 mx-auto" />
         </template>
 
         <form @submit.prevent="submit">

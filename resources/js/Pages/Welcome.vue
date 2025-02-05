@@ -69,8 +69,8 @@ import ApplicationLogo from '@/Components/ApplicationMark.vue';
             </p>
         </div>
 
-        <!-- Sección de autenticación -->
-        <div class="m-6 flex justify-center space-x-4">
+        <!-- Sección de autenticación, ahora en la parte superior derecha -->
+        <div class="absolute top-6 right-6 flex justify-center space-x-4 z-10">
             <Link :href="route('login')" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Iniciar Sesión</Link>
             <Link :href="route('register')" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">Registrarse</Link>
         </div>

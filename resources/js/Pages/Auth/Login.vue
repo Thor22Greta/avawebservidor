@@ -1,5 +1,6 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import ApplicationLogo from '@/Components/ApplicationMark.vue';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
 import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
 import Checkbox from '@/Components/Checkbox.vue';
@@ -29,12 +30,14 @@ const submit = () => {
 };
 </script>
 
+
 <template>
     <Head title="Log in" />
 
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+            <!-- Aquí usas el ApplicationLogo -->
+            <ApplicationLogo class="w-32 h-32 mx-auto" />
         </template>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
