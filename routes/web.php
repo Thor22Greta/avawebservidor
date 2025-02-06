@@ -7,7 +7,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\DonationController;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\AdminController;
 
 
 Route::get('/', function () {
@@ -47,14 +47,9 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
-Route::get('estadisticas', function () {
-    if (Auth::user()->is_admin) {
-        return Inertia::render('Admin');
-    } else  {
-        return Inertia::render('dashboard');
-    }
-})->name('Admin')->middleware('auth:sanctum');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::patch('/admin/toggle-status/{user}', [AdminController::class, 'toggleStatus']);
+Route::get('/estadisticas', [AdminController::class, 'index'])->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',
