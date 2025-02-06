@@ -42,20 +42,20 @@ import ApplicationLogo from '@/Components/ApplicationMark.vue';
 
             <div>
                 <h2 class="text-2xl font-semibold text-green-600">🐶 Luchando por los animales</h2>
-                <p class="mt-4 text-gray-500 text-sm leading-relaxed">
+                <p class="mt-2 text-gray-500 text-sm leading-relaxed">
                     Estamos comprometidos con la defensa de los derechos de los animales y trabajamos activamente para darles una vida mejor.
                 </p>
             </div>
         </div>
 
         <!-- Sección de donaciones -->
-        <div class="bg-white p-6 lg:p-8 mt-6 border-t border-gray-200">
+        <div class="bg-white p-6 lg:p-8 mt-4 border-t border-gray-200">
             <h2 class="text-2xl font-semibold text-green-600">💚 Cuenta de Donaciones</h2>
-            <p class="mt-4 text-gray-500 text-sm leading-relaxed">
+            <p class="mt-2 text-gray-500 text-sm leading-relaxed">
                 Tu apoyo es fundamental para continuar con nuestra misión. Puedes realizar una donación a través de la siguiente cuenta:
             </p>
             <p class="mt-2 font-semibold text-gray-900">ES73 0049 3376 5323 1411 7493</p>
-            <p class="mt-4 text-gray-500 text-sm leading-relaxed">
+            <p class="mt-2 text-gray-500 text-sm leading-relaxed">
                 También puedes colaborar a través de nuestro perfil de Tiendanimal:
             </p>
             <p class="mt-2">

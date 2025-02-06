@@ -6,8 +6,16 @@ use App\Models\Animal;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class AnimalController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth'); // Esto asegura que solo los usuarios autenticados puedan acceder a las acciones
+    }
+    use AuthorizesRequests;
     public function index()
     {
         $animals = Animal::all();
@@ -19,22 +27,6 @@ class AnimalController extends Controller
         return Inertia::render('Animals/Create');
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'raza' => 'required|string|max:255',
-            'chip' => 'nullable|string|max:255',
-            'age' => 'required|integer',
-            'user_id' => 'required|exists:users,id',
-            'adopted' => 'nullable|date',
-            'poster_image_url' => 'nullable|url',
-        ]);
-
-        Animal::create($request->all());
-
-        return redirect()->route('animals.index');
-    }
 
     public function show(Animal $animal)
     {
@@ -42,30 +34,63 @@ class AnimalController extends Controller
     }
 
     public function edit(Animal $animal)
-    {
-        return Inertia::render('Animals/Edit', ['animal' => $animal]);
-    }
+{
+    $this->authorize('update', $animal); // 🔒 Verifica si el usuario puede editar
+    return Inertia::render('Animals/Edit', ['animal' => $animal]);
+}
 
-    public function update(Request $request, Animal $animal)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'raza' => 'required|string|max:255',
-            'chip' => 'nullable|string|max:255',
-            'age' => 'required|integer',
-            'user_id' => 'required|exists:users,id',
-            'adopted' => 'nullable|date',
-            'poster_image_url' => 'nullable|url',
-        ]);
+public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'raza' => 'required|string|max:255',
+        'chip' => 'nullable|string|max:255',
+        'age' => 'required|integer',
+        'user_id' => 'required|exists:users,id',  // Verifica que el user_id esté presente y sea válido
+        'adopted' => 'nullable|date',
+        'poster_image_url' => 'nullable|url',
+    ]);
 
-        $animal->update($request->all());
+    $animal = Animal::create([
+        'name' => $request->name,
+        'raza' => $request->raza,
+        'chip' => $request->chip,
+        'age' => $request->age,
+        'user_id' => \Illuminate\Support\Facades\Auth::user()->id,  // Asigna el usuario autenticado
+        'adopted' => $request->adopted,
+        'poster_image_url' => $request->poster_image_url,
+    ]);
 
-        return redirect()->route('animals.index');
-    }
+    return redirect()->route('animals.index');
+}
 
-    public function destroy(Animal $animal)
-    {
-        $animal->delete();
-        return redirect()->route('animals.index');
-    }
+public function update(Request $request, Animal $animal)
+{
+    $this->authorize('update', $animal);
+
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'raza' => 'required|string|max:255',
+        'chip' => 'nullable|string|max:255',
+        'age' => 'required|integer',
+        'user_id' => 'required|exists:users,id',
+        'adopted' => 'nullable|date',
+        'poster_image_url' => 'nullable|url',
+    ]);
+
+    // Verifica que solo el usuario autenticado pueda actualizar los animales que le pertenecen
+    $animal->update($request->all());
+
+    return redirect()->route('animals.index')->with('success', 'Animal actualizado correctamente.');
+}
+
+
+public function destroy(Animal $animal)
+{
+    $this->authorize('delete', $animal); // 🔒 Verifica si el usuario puede eliminar
+    $animal->delete();
+    
+    return redirect()->route('animals.index')->with('success', 'Animal eliminado correctamente.');
+}
+
 }

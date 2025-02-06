@@ -19,29 +19,34 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/events', [EventController::class, 'index'])->name('events.index');
-Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
-Route::post('/events', [EventController::class, 'store'])->name('events.store');
-Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
-Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
-Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
-Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+Route::middleware(['auth'])->group(function () {
+    // Rutas de eventos protegidas por el middleware 'auth'
+    Route::get('/events', [EventController::class, 'index'])->name('events.index');
+    Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+    Route::post('/events', [EventController::class, 'store'])->name('events.store');
+    Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
+    Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
+    Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
+    Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+    
+    Route::get('/animals', [AnimalController::class, 'index'])->name('animals.index');
+    Route::get('/animals/create', [AnimalController::class, 'create'])->name('animals.create');
+    Route::post('/animals', [AnimalController::class, 'store'])->name('animals.store');
+    Route::get('/animals/{animal}', [AnimalController::class, 'show'])->name('animals.show');
+    Route::get('/animals/{animal}/edit', [AnimalController::class, 'edit'])->name('animals.edit');
+    Route::put('/animals/{animal}', [AnimalController::class, 'update'])->name('animals.update');
+    Route::delete('/animals/{animal}', [AnimalController::class, 'destroy'])->name('animals.destroy');
 
-Route::get('/animals', [AnimalController::class, 'index'])->name('animals.index');
-Route::get('/animals/create', [AnimalController::class, 'create'])->name('animals.create');
-Route::post('/animals', [AnimalController::class, 'store'])->name('animals.store');
-Route::get('/animals/{animal}', [AnimalController::class, 'show'])->name('animals.show');
-Route::get('/animals/{animal}/edit', [AnimalController::class, 'edit'])->name('animals.edit');
-Route::put('/animals/{animal}', [AnimalController::class, 'update'])->name('animals.update');
-Route::delete('/animals/{animal}', [AnimalController::class, 'destroy'])->name('animals.destroy');
+    Route::get('/donations', [DonationController::class, 'index'])->name('donations.index');
+    Route::get('/donations/create', [DonationController::class, 'create'])->name('donations.create');
+    Route::post('/donations', [DonationController::class, 'store'])->name('donations.store');
+    Route::get('/donations/{donation}', [DonationController::class, 'show'])->name('donations.show');
+    Route::get('/donations/{donation}/edit', [DonationController::class, 'edit'])->name('donations.edit');
+    Route::put('/donations/{donation}', [DonationController::class, 'update'])->name('donations.update');
+    Route::delete('/donations/{donation}', [DonationController::class, 'destroy'])->name('donations.destroy');
+});
 
-Route::get('/donations', [DonationController::class, 'index'])->name('donations.index');
-Route::get('/donations/create', [DonationController::class, 'create'])->name('donations.create');
-Route::post('/donations', [DonationController::class, 'store'])->name('donations.store');
-Route::get('/donations/{donation}', [DonationController::class, 'show'])->name('donations.show');
-Route::get('/donations/{donation}/edit', [DonationController::class, 'edit'])->name('donations.edit');
-Route::put('/donations/{donation}', [DonationController::class, 'update'])->name('donations.update');
-Route::delete('/donations/{donation}', [DonationController::class, 'destroy'])->name('donations.destroy');
+
 
 Route::get('estadisticas', function () {
     if (Auth::user()->is_admin) {

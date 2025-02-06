@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');  
             $table->dateTime('event_date');
             $table->text('description');
-            $table->string('poster_image_url');  // Cambié el nombre del campo a 'poster_image_url' como en el modelo
+            $table->string('poster_image_url')->nullable(); // Cambié el nombre del campo a 'poster_image_url' como en el modelo
             $table->string('location')->nullable();
             $table->string('contact_info')->nullable();
             $table->decimal('revenue', 8, 2)->nullable();  // Recaudación (con valores decimales y puede ser null)

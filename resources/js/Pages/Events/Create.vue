@@ -1,12 +1,16 @@
 <script setup>
 import { ref } from "vue";
-import { router } from "@inertiajs/vue3";
+import { router, usePage } from "@inertiajs/vue3"; // Importar usePage para acceder al usuario autenticado
 import AppLayout from "@/Layouts/AppLayout.vue"; // Importa el layout
 
+const page = usePage(); // Obtiene los datos de la página
+
+// Añadir el user_id automáticamente desde los props de la página (usuario autenticado)
 const form = ref({
     event_date: "",
     description: "",
     location: "",
+    user_id: page.props.auth.user.id, // Obtener el user_id
 });
 
 const submit = () => {
