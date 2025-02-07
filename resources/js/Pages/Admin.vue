@@ -1,12 +1,11 @@
 <script setup>
 import { defineProps } from 'vue';
 
-// Recibimos el token CSRF desde las props
 const props = defineProps({
-    users: Array,  // Recibimos los usuarios desde el backend
-    user: Object,  // Recibimos el usuario autenticado
-    csrfToken: String,  // Recibimos el token CSRF
-    totals: Object,  // Recibimos los totales desde el backend
+    users: Array,     // Recibimos los usuarios desde el backend
+    user: Object,     // Recibimos el usuario autenticado
+    csrfToken: String,// Recibimos el token CSRF
+    totals: Object,   // Recibimos los totales desde el backend (si lo necesitas)
 });
 </script>
 
@@ -21,31 +20,27 @@ const props = defineProps({
                 </header>
 
                 <main>
-                    <!-- Solo mostrar la interfaz de administración si el usuario es admin -->
+                    <!-- Mostrar la interfaz de administración solo si el usuario es admin -->
                     <div v-if="user && user.is_admin">
+                        <!-- (Opcional) Tabla de Totales -->
                         <div class="overflow-x-auto bg-white shadow-md rounded-lg mb-6">
-                            <!-- Tabla de Totales -->
                             <h2 class="text-xl font-semibold mb-4">Totales</h2>
                             <table class="w-full table-auto">
                                 <thead>
                                     <tr class="bg-gray-100 dark:bg-zinc-800">
                                         <th class="px-4 py-2 text-left">Usuarios</th>
-                                        <th class="px-4 py-2 text-left">Animales</th>
-                                        <th class="px-4 py-2 text-left">Eventos</th>
-                                        <th class="px-4 py-2 text-left">Donaciones</th>
+                                        <!-- Otras columnas si tienes totales para animales, eventos, donaciones -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="border-b border-gray-200 dark:border-zinc-700">
                                         <td class="px-4 py-2">{{ totals.users }}</td>
-                                        <td class="px-4 py-2">{{ totals.animals }}</td>
-                                        <td class="px-4 py-2">{{ totals.events }}</td>
-                                        <td class="px-4 py-2">{{ totals.donations }}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
 
+                        <!-- Tabla de usuarios -->
                         <div class="overflow-x-auto bg-white shadow-md rounded-lg">
                             <table class="w-full table-auto">
                                 <thead>
@@ -66,6 +61,7 @@ const props = defineProps({
                                             </span>
                                         </td>
                                         <td class="px-4 py-2 text-center">
+                                            <!-- Formulario para cambiar el estado del usuario -->
                                             <form :action="'/admin/toggle-status/' + user.id" method="POST">
                                                 <input type="hidden" name="_token" :value="csrfToken" />
                                                 <input type="hidden" name="_method" value="PATCH" />

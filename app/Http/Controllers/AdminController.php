@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Donation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class AdminController extends Controller
 {
@@ -29,11 +30,11 @@ class AdminController extends Controller
         ];
 
         // Pasamos los totales y otros datos a la vista
-        return inertia('Admin', [
+        return Inertia::render('Admin', [
             'users' => User::all(),
             'user' => Auth::user(),
-            'csrfToken' => $csrfToken, // Pasamos el token CSRF al componente
-            'totals' => $totals, // Los totales que se van a mostrar en la tabla
+            'csrfToken' => $csrfToken,
+            'totals' => $totals,
         ]);
     }
 
@@ -47,7 +48,7 @@ class AdminController extends Controller
         $user->status = ($user->status === 'activo') ? 'bloqueado' : 'activo';
         $user->save();
 
-        // Redirigir de nuevo al administrador
+        // Redirigir de nuevo al panel de administración
         return redirect()->route('admin.index')->with('success', 'Estado del usuario actualizado');
     }
 }

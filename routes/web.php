@@ -46,10 +46,11 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/donations/{donation}', [DonationController::class, 'destroy'])->name('donations.destroy');
 });
 
-
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-Route::patch('/admin/toggle-status/{user}', [AdminController::class, 'toggleStatus']);
-Route::get('/estadisticas', [AdminController::class, 'index'])->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::patch('/admin/toggle-status/{user}', [AdminController::class, 'toggleStatus'])->name('admin.toggleStatus');
+    Route::get('/estadisticas', [AdminController::class, 'index'])->name('estadisticas');
+});
 
 Route::middleware([
     'auth:sanctum',
