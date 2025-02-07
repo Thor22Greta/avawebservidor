@@ -37,6 +37,7 @@ class UserFactory extends Factory
             'profile_photo_path' => null,
             'current_team_id' => null,
             'is_admin' => false, // Por defecto es un usuario normal
+            'status' => 'activo', // Por defecto el usuario está activo
         ];
     }
 
