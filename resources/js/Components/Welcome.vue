@@ -1,5 +1,7 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationMark.vue';
+import { usePage } from '@inertiajs/vue3';
+const { props: pageProps } = usePage();
 </script>
 
 <template>
@@ -7,7 +9,9 @@ import ApplicationLogo from '@/Components/ApplicationMark.vue';
         <!-- Sección de encabezado -->
         <div class="p-6 lg:p-8 bg-white border-b border-green-600 text-center">
             <ApplicationLogo class="w-32 h-32 mx-auto" />
-            <h1 class="mt-4 text-3xl font-bold text-green-600">Animalistes Vall d’Albaida</h1>
+            <h1 class="mt-4 text-3xl font-bold text-green-600">
+                Bienvenido {{ pageProps.auth.user.name }} a Animalistes Vall d’Albaida
+            </h1>
             <p class="mt-2 text-xl text-gray-600">Luchando por el bienestar animal</p>
             <!-- Enlace a Instagram -->
             <p class="mt-4">
