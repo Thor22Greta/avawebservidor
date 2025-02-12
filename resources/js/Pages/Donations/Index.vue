@@ -24,6 +24,7 @@ const filteredDonations = computed(() => {
   return props.donations.filter((donation) => {
     return (
       donation.user.name.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+      donation.donante.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
       donation.amount.toString().includes(state.searchQuery) ||
       donation.payment_method.toLowerCase().includes(state.searchQuery.toLowerCase())
     );
@@ -56,6 +57,7 @@ const filteredDonations = computed(() => {
         <thead>
           <tr>
             <th class="border border-green-600 p-2">Usuario</th>
+            <th class="border border-green-600 p-2">Donante</th>
             <th class="border border-green-600 p-2">Monto</th>
             <th class="border border-green-600 p-2">Método de Pago</th>
             <th class="border border-green-600 p-2">Acciones</th>
@@ -64,6 +66,7 @@ const filteredDonations = computed(() => {
         <tbody>
           <tr v-for="donation in filteredDonations" :key="donation.id">
             <td class="border border-green-600 p-2">{{ donation.user.name }}</td>
+            <td class="border border-green-600 p-2">{{ donation.donante }}</td>
             <td class="border border-green-600 p-2">${{ donation.amount }}</td>
             <td class="border border-green-600 p-2">{{ donation.payment_method }}</td>
             <td class="border border-green-600 p-2">

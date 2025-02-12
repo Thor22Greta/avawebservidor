@@ -15,9 +15,9 @@ class CreateDonationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');  
             $table->decimal('amount', 8, 2);
-            $table->unsignedBigInteger('animal_id')->nullable();  
-            $table->unsignedBigInteger('event_id')->nullable();  
-            $table->enum('payment_method', ['transaction_id', 'cash'])->nullable(); // Añadimos el campo 'payment_method'
+            $table->unsignedBigInteger('animal_id')->nullable();
+            $table->unsignedBigInteger('event_id')->nullable();   
+            $table->enum('payment_method', ['transaction_id', 'cash'])->nullable(); 
             $table->timestamps();
 
             // Relacion con 'users'

@@ -10,7 +10,7 @@ class Donation extends Model
     use HasFactory;
 
     // Añadimos el campo 'payment_method' a $fillable
-    protected $fillable = ['user_id', 'animal_id', 'event_id', 'amount', 'payment_method'];
+    protected $fillable = ['user_id', 'animal_id', 'event_id', 'amount', 'payment_method', 'donante'];
 
     /**
      * Relación con 'users'

@@ -9,6 +9,8 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
+
 
 class DonationController extends Controller
 {
@@ -22,31 +24,35 @@ class DonationController extends Controller
     }
 
     public function create()
-    {
-        // Muestra el formulario para crear una donación
-        return Inertia::render('Donations/Create', [
-            'users' => User::all(),
-            'animals' => Animal::all(),
-            'events' => Event::all(),
-        ]);
-    }
+{
+    return Inertia::render('Donations/Create', [
+        // No se envía la lista de usuarios, ya que el usuario autenticado se toma automáticamente
+        'animals' => Animal::all(),
+        'events' => Event::all(),
+    ]);
+}
 
-    public function store(Request $request)
-    {
-        // Valida los datos antes de almacenarlos
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'animal_id' => 'required|exists:animals,id',
-            'event_id' => 'required|exists:events,id',
-            'amount' => 'required|numeric',
-            'payment_method' => 'required|string',
-        ]);
+public function store(Request $request)
+{
+    
+    $request->validate([
+        // Reglas de validación
+        'user_id' => 'required|exists:users,id',
+        'animal_id' => 'nullable|exists:animals,id',
+        'event_id' => 'nullable|exists:events,id',
+        'amount' => 'required|numeric',
+        'payment_method' => 'required|string',
+        'donante' => 'required|string|max:255',
+    ]);
 
-        // Crea la donación
-        $donation = Donation::create($request->all());
+    $data = $request->all();
+    // Opcional: sobrescribir user_id con el ID del usuario autenticado
+    $data['user_id'] = Auth::id();
 
-        return redirect()->route('donations.index')->with('success', 'Donación creada con éxito');
-    }
+    $donation = Donation::create($data);
+
+    return redirect()->route('donations.index')->with('success', 'Donación creada con éxito');
+}
 
     public function edit(Donation $donation)
     {
@@ -59,28 +65,27 @@ class DonationController extends Controller
             'users' => User::all(),
             'animals' => Animal::all(),
             'events' => Event::all(),
+            'donante' => 'required|string|max:255',
         ]);
     }
 
     public function update(Request $request, Donation $donation)
-    {
-        // Verifica si el usuario puede actualizar la donación
-        $this->authorize('update', $donation);
+{
+    $this->authorize('update', $donation);
 
-        // Valida los datos antes de actualizar la donación
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'animal_id' => 'nullable|exists:animals,id',
-            'event_id' => 'nullable|exists:events,id',
-            'amount' => 'required|numeric|min:1',
-            'payment_method' => 'required|string|max:255',
-        ]);
+    $request->validate([
+        'user_id' => 'required|exists:users,id',
+        'animal_id' => 'nullable|exists:animals,id',
+        'event_id' => 'nullable|exists:events,id',
+        'amount' => 'required|numeric|min:1',
+        'payment_method' => 'required|string|max:255',
+        'donante' => 'required|string|max:255',
+    ]);
 
-        // Actualiza la donación
-        $donation->update($request->all());
+    $donation->update($request->all());
 
-        return redirect()->route('donations.index')->with('success', 'Donación actualizada correctamente.');
-    }
+    return redirect()->route('donations.index')->with('success', 'Donación actualizada correctamente.');
+}
 
     public function destroy(Donation $donation)
     {
