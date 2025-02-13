@@ -6,8 +6,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\DonationController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserPreferenceController;
 
 
 Route::get('/', function () {
@@ -52,7 +52,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/estadisticas', [AdminController::class, 'index'])->name('estadisticas');
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 });
-
+Route::middleware('auth')->group(function () {
+    // Ruta para obtener las preferencias del usuario
+    Route::get('/user/preferences', [UserPreferenceController::class, 'getPreferences']);
+    // Ruta para actualizar las preferencias del usuario
+    Route::post('/user/preference/dark-mode', [UserPreferenceController::class, 'updateDarkMode']);
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
