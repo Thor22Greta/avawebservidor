@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::patch('/admin/toggle-status/{user}', [AdminController::class, 'toggleStatus'])->name('admin.toggleStatus');
     Route::get('/estadisticas', [AdminController::class, 'index'])->name('estadisticas');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 });
 
 Route::middleware([

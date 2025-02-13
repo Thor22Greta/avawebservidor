@@ -7,6 +7,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import { usePage } from '@inertiajs/vue3';
 
 defineProps({
     title: String,
@@ -25,6 +26,9 @@ const switchToTeam = (team) => {
 const logout = () => {
     router.post(route('logout'));
 };
+
+const page = usePage();
+
 </script>
 
 <template>
@@ -60,6 +64,14 @@ const logout = () => {
                                 </NavLink>
                                 <NavLink :href="route('donations.index')" :active="route().current('donations.index')">
                                     Donaciones
+                                </NavLink>
+                                <!-- Solo visible para administradores -->
+                                <NavLink 
+                                v-if="page.props.auth.user?.is_admin" 
+                                :href="route('admin.dashboard')" 
+                                :active="route().current('admin.index')"
+                                >
+                                📊 Estadísticas
                                 </NavLink>
                             </div>
                         </div>
