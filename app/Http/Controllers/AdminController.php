@@ -18,27 +18,28 @@ class AdminController extends Controller
     }
 
     public function index()
-    {
-        $csrfToken = csrf_token(); // Obtener el token CSRF
-        
-        // Contamos los registros de cada modelo
-        $totals = [
-            'users' => User::count(),
-            'animals' => Animal::count(),
-            'events' => Event::count(),
-            'donations' => Donation::count(),
-        ];
+{
+    $csrfToken = csrf_token(); // Obtener el token CSRF
 
-        // Pasamos los totales y otros datos a la vista
-        return Inertia::render('Admin', [
-            'users' => User::all(),
-            'user' => Auth::user(),
-            'csrfToken' => $csrfToken,
-            'totals' => $totals,
-        ]);
-    }
+    // Contamos los registros de cada modelo
+    $totals = [
+        'users' => User::count(),
+        'animals' => Animal::count(),
+        'events' => Event::count(),
+        'donations' => Donation::count(),
+    ];
 
-    // Método para cambiar el estado del usuario
+    // Pasamos los totales, usuarios y animales a la vista
+    return Inertia::render('Admin', [
+        'users' => User::all(),
+        'user' => Auth::user(),
+        'csrfToken' => $csrfToken,
+        'totals' => $totals,
+        'animals' => Animal::orderBy('updated_at', 'desc')->get(), // 🔹 Ahora enviamos los animales
+    ]);
+}
+
+
     public function toggleStatus($userId)
     {
         // Obtener el usuario

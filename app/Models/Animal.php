@@ -20,8 +20,8 @@ class Animal extends Model
         return $this->hasMany(Donation::class);
     }
 
-    // Si el campo 'adopted' es un timestamp, asegúrate de que no sea manipulado automáticamente por Eloquent
     protected $casts = [
-        'adopted' => 'datetime',  // Convierte 'adopted' en un objeto de fecha y hora
+        'adopted' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 }

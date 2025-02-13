@@ -56,6 +56,7 @@ const filteredAnimals = computed(() => {
                         <th class="border border-green-600 p-2">Nombre</th>
                         <th class="border border-green-600 p-2">Raza</th>
                         <th class="border border-green-600 p-2">Edad</th>
+                        <th class="border border-green-600 p-2">Última Modificación</th>
                         <th class="border border-green-600 p-2">Acciones</th>
                     </tr>
                 </thead>
@@ -64,6 +65,9 @@ const filteredAnimals = computed(() => {
                         <td class="border border-green-600 p-2">{{ animal.name }}</td>
                         <td class="border border-green-600 p-2">{{ animal.raza }}</td>
                         <td class="border border-green-600 p-2">{{ animal.age }}</td>
+                        <td class="border border-green-600 p-2">
+                        {{ new Date(animal.updated_at).toLocaleString() }}
+                        </td>
                         <td class="border border-green-600 p-2">
                             <a :href="`/animals/${animal.id}`" class="bg-green-600 text-white p-1 hover:bg-green-500">Ver</a>
                             <a :href="`/animals/${animal.id}/edit`" class="bg-yellow-500 text-white p-1 ml-2 hover:bg-yellow-400">Editar</a>

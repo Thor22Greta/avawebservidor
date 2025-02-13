@@ -13,14 +13,14 @@ class AnimalController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth'); // Esto asegura que solo los usuarios autenticados puedan acceder a las acciones
+        $this->middleware('auth'); 
     }
     use AuthorizesRequests;
     public function index()
-    {
-        $animals = Animal::all();
-        return Inertia::render('Animals/Index', ['animals' => $animals]);
-    }
+{
+    $animals = Animal::orderBy('updated_at', 'desc')->get();
+    return Inertia::render('Animals/Index', ['animals' => $animals]);
+}
 
     public function create()
     {
@@ -35,7 +35,7 @@ class AnimalController extends Controller
 
     public function edit(Animal $animal)
 {
-    $this->authorize('update', $animal); // 🔒 Verifica si el usuario puede editar
+    $this->authorize('update', $animal); 
     return Inertia::render('Animals/Edit', ['animal' => $animal]);
 }
 
@@ -87,7 +87,7 @@ public function update(Request $request, Animal $animal)
 
 public function destroy(Animal $animal)
 {
-    $this->authorize('delete', $animal); // 🔒 Verifica si el usuario puede eliminar
+    $this->authorize('delete', $animal); 
     $animal->delete();
     
     return redirect()->route('animals.index')->with('success', 'Animal eliminado correctamente.');

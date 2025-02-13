@@ -1,12 +1,35 @@
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, reactive, computed } from "vue";
+import { router } from "@inertiajs/vue3";
 
 const props = defineProps({
   users: Array,     // Recibimos los usuarios desde el backend
   user: Object,     // Recibimos el usuario autenticado
   csrfToken: String,// Recibimos el token CSRF
-  totals: Object,   // Recibimos los totales desde el backend (usuarios, animales, eventos, donaciones)
+  totals: Object, 
+  animals: Array  
 });
+// Estado para la búsqueda de animales
+const state = reactive({
+    searchQuery: ''
+});
+
+// Filtrar los animales según la búsqueda
+const filteredAnimals = computed(() => {
+    if (!state.searchQuery) return props.animals;
+    return props.animals.filter(animal =>
+        animal.name.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+        animal.raza.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+        animal.age.toString().includes(state.searchQuery)
+    );
+});
+
+// Función para eliminar un animal
+const deleteAnimal = (id) => {
+    if (confirm("¿Estás seguro de que deseas eliminar este animal?")) {
+        router.delete(`/animals/${id}`);
+    }
+};
 </script>
 
 <template>
@@ -44,6 +67,40 @@ const props = defineProps({
                 </tbody>
               </table>
             </div>
+            <!-- Tabla de Animales -->
+<div class="overflow-x-auto bg-white shadow-md rounded-lg mt-6 p-4">
+    <h2 class="text-xl font-semibold mb-4 text-green-600">Lista de Animales</h2>
+
+    <!-- Campo de búsqueda -->
+    <input
+        v-model="state.searchQuery"
+        type="text"
+        placeholder="Buscar animal por nombre, raza o edad..."
+        class="border border-green-300 p-2 w-1/2 rounded mb-4"
+    />
+
+    <table class="w-full table-auto border border-green-600">
+        <thead>
+            <tr class="bg-green-100">
+                <th class="border border-green-600 p-2">Nombre</th>
+                <th class="border border-green-600 p-2">Raza</th>
+                <th class="border border-green-600 p-2">Edad</th>
+                <th class="border border-green-600 p-2">Última Modificación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="animal in filteredAnimals" :key="animal.id">
+                <td class="border border-green-600 p-2">{{ animal.name }}</td>
+                <td class="border border-green-600 p-2">{{ animal.raza }}</td>
+                <td class="border border-green-600 p-2">{{ animal.age }}</td>
+                <td class="border border-green-600 p-2">
+                    {{ new Date(animal.updated_at).toLocaleString() }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 
             <!-- Tabla de Usuarios -->
             <div class="overflow-x-auto bg-white shadow-md rounded-lg">
@@ -53,7 +110,6 @@ const props = defineProps({
                     <th class="px-4 py-2 text-left">Nombre</th>
                     <th class="px-4 py-2 text-left">Correo Electrónico</th>
                     <th class="px-4 py-2 text-left">Estado</th>
-                    <th class="px-4 py-2 text-center">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
